@@ -1,0 +1,66 @@
+\documentclass{article}
+
+\usepackage[english]{babel}
+
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{\textbf{Simple Linear Regression}}
+\author{\textbf{Thenu Kaluarachchi}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+\noindent
+Linear Regression is used to calculate the best fit line of a given set of data. This document will only cover the derivation of the simple case, i.e where there is only \textbf{one} independent variable. However the equation can be iterated over multiple times in a loop where there are multiple variables.
+
+\section{Derivation}
+Let $f(x)$ be the equation of the line that estimates the actual dependant variable $y$.
+\\\\
+\begin{math}
+f(x) = \theta\cdot x + \epsilon
+\end{math}
+\\\\
+Where $\theta$ and $\epsilon$ are the \textbf{weight} and the \textbf{bias} respectively. They are, unknowns.
+\\\\
+The summed residual error is,
+\begin{align}
+    J\, = \, \sum_{r=i}^n{(y_i-f(x_i))^2}\,=\, \sum_{r=i}^n{(y_i - \theta\cdot x_i - \epsilon)^2}
+\end{align}
+The purpose of linear regression is to find suitable values of $\theta$ and $\epsilon$, such that the residual error is minimized. Thus, we will take the partial derivatives of $J$ and equate them to zero.
+$$
+    \frac{\partial J}{\partial \theta}\, = \, \sum{2(y_i -\theta\cdot x_i - \epsilon)\cdot (-x_i)}\, = \,0 
+$$
+$$
+    \frac{\partial J}{\partial \epsilon}\, = \, \sum{2(y_i -\theta\cdot x_i - \epsilon)\cdot (-1)}\, = \,0
+    
+$$
+
+We can simplify this to get,
+$$
+(1)\; -\sum{x_i\cdot y_i} + \theta\cdot\sum{(x_i)^2} + \epsilon \cdot \sum{x_i} = 0
+$$
+$$
+(2)\; -\sum{ y_i} + \theta\cdot\sum{x_i} + \epsilon \cdot \sum{\epsilon} = 0
+$$
+\newpage
+\noindent
+\noindent\\
+Note that we can replace $\sum{\epsilon}$ with $n\cdot\epsilon$.\\\\
+Solving further simultaneously, we can come to the following conclusions,
+$$
+\theta\, = \, \frac{n\cdot\sum{x_i\cdot y_i} \, - \, \sum{y_i}\cdot\sum{x_i}}{n
+\cdot\sum{(x_i)^2}\, - \, (\sum{x_i}^2)}
+$$
+$$
+\epsilon \, = \, \frac{1}{n}\cdot (\sum{y_i} - {\theta\cdot\sum{x_i}})
+$$
+
+
+\end{document}
